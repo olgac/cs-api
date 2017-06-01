@@ -25,6 +25,7 @@ nbdist/
 
 ### Maven ###
 .mvn/
+.mvn/wrapper/
 mvn*
 /mvnw.cmd
 /mvnw
