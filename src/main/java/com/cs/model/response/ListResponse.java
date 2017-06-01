@@ -1,12 +1,14 @@
 package com.cs.model.response;
 
+import com.cs.model.dto.DataDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.cs.model.dto.AmountDto;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -17,10 +19,25 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ListResponse {
+public class ListResponse implements Serializable {
 
-    private String status;
+    @JsonProperty("per_page")
+    private Integer perPage;
 
-    private List<AmountDto> response;
+    @JsonProperty("current_page")
+    private Integer currentPage;
+
+    @JsonProperty("next_page_url")
+    private String nextPageUrl;
+
+    @JsonProperty("prev_page_url")
+    private String prevPageUrl;
+
+    private Integer from;
+
+    private Integer to;
+
+    @JsonProperty
+    private List<DataDto> data;
 
 }

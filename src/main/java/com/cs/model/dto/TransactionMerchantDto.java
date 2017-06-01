@@ -20,6 +20,8 @@ import java.util.Date;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TransactionMerchantDto implements Serializable {
 
+    private static final long serialVersionUID = 3144081124787429490L;
+
     private Integer id;
 
     private String referenceNo;

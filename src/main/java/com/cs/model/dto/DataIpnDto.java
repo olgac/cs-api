@@ -1,24 +1,23 @@
-package com.cs.model.response;
+package com.cs.model.dto;
 
-import com.cs.model.dto.MerchantDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 /**
- * Created by olgac on 31/05/2017.
+ * Created by olgac on 01/06/2017.
  */
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class MerchantResponse implements Serializable {
+public class DataIpnDto implements Serializable {
 
-    private MerchantDto merchant;
+    private static final long serialVersionUID = -3795238553946384045L;
+
+    private Boolean sent;
 
 }

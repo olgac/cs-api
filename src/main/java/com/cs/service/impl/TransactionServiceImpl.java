@@ -44,7 +44,7 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public ListResponse retrieveList(String token, ListRequest listRequest, Integer page) {
-        String suffix = page != null && page > 1 ? page.toString() : "";
+        String suffix = page != null && page > 1 ? "?page=".concat(page.toString()) : "";
         return rest.post(listPath.concat(suffix), token, listRequest, ListResponse.class);
     }
 

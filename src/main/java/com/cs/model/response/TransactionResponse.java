@@ -1,9 +1,9 @@
 package com.cs.model.response;
 
 import com.cs.model.dto.CustomerDto;
+import com.cs.model.dto.DataMerchantDto;
 import com.cs.model.dto.FxDto;
 import com.cs.model.dto.TransactionDto;
-import com.cs.model.dto.TransactionResponseMerchantDto;
 import com.cs.model.dto.TransactionResponseParentDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -29,7 +29,7 @@ public class TransactionResponse implements Serializable {
 
     private TransactionDto transaction;
 
-    private TransactionResponseMerchantDto merchant;
+    private DataMerchantDto merchant;
 
     private TransactionResponseParentDto parent;
 

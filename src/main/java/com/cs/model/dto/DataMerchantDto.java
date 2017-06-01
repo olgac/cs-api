@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 /**
  * Created by olgac on 01/06/2017.
@@ -15,16 +14,16 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class FxMerchantDto implements Serializable {
+public class DataMerchantDto implements Serializable {
 
-    private static final long serialVersionUID = -5756688162155089582L;
+    private static final long serialVersionUID = -6120877068008857579L;
 
-    private BigDecimal originalAmount;
+    private Integer id;
 
-    private String originalCurrency;
+    private String name;
 
-    private BigDecimal convertedAmount;
+    private Boolean allowPartialRefund;
 
-    private String convertedCurrency;
+    private Boolean allowPartialCapture;
 
 }
