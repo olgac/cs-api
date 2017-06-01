@@ -14,6 +14,6 @@ public enum Operation {
     THREEDAUTH("3DAUTH"),
     STORED("STORED");
 
-    private String value;
+    private String name;
 
 }

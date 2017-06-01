@@ -1,38 +1,36 @@
 package com.cs.model.response;
 
-import com.cs.model.dto.AmountDto;
+import com.cs.model.dto.CustomerDto;
+import com.cs.model.dto.FxDto;
+import com.cs.model.dto.TransactionDto;
+import com.cs.model.dto.TransactionResponseMerchantDto;
+import com.cs.model.dto.TransactionResponseParentDto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.io.Serializable;
 
 /**
  * Created by olgac on 31/05/2017.
  */
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TransactionResponse {
+public class TransactionResponse implements Serializable {
 
-    @JsonProperty("per_page")
-    private Integer perPage;
+    private static final long serialVersionUID = -5688276687133049083L;
 
-    @JsonProperty("current_page")
-    private Integer currentPage;
+    private CustomerDto customerInfo;
 
-    @JsonProperty
-    private Integer from;
+    private FxDto fx;
 
-    @JsonProperty
-    private Integer to;
+    private TransactionDto transaction;
 
-    @JsonProperty
-    private List<AmountDto> data;
+    private TransactionResponseMerchantDto merchant;
+
+    private TransactionResponseParentDto parent;
 
 }

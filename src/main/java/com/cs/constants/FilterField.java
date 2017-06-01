@@ -14,6 +14,6 @@ public enum FilterField {
     F4("Custom Data"),
     F5("Card PAN");
 
-    private String value;
+    private String name;
 
 }

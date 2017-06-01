@@ -2,7 +2,6 @@ package com.cs.model.request;
 
 import com.cs.constants.ErrorCode;
 import com.cs.constants.FilterField;
-import com.cs.constants.Operation;
 import com.cs.constants.PaymentMethod;
 import com.cs.constants.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -31,7 +30,7 @@ public class ListRequest {
 
     private Status status;
 
-    private Operation operation;
+    private String operation;
 
     private Integer merchantId;
 
