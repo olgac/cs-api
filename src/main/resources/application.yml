@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: CS
+
+server:
+  port: 8080
+
+logging:
+  level: debug
+
+user:
+  email: demo@bumin.com.tr
+  password: cjaiU8CV
+
+rest:
+  base: https://testreportingapi.clearsettle.com/api/v3
+  login: /merchant/user/login
+  list: /transaction/list
+  report: /transactions/report
+  client: /client
+  merchant: /merchant
+  transaction: /transaction

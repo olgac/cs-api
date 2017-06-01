@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <include resource="org/springframework/boot/logging/logback/defaults.xml"/>
+
+    <!--== VARIABLES ============================================================================================-->
+
+    <springProperty scope="context" name="springApplicationName" source="spring.application.name"/>
+
+    <property name="CONSOLE_LOG_PATTERN" value="%d %clr(%5p) --- %clr(${springApplicationName}){magenta} [%15.15t] %clr(%-40.40logger{39}){cyan} : %m%n%wEx"/>
+
+    <!--== APPENDERS ============================================================================================-->
+
+    <include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+    <!--== LOGGERS ==============================================================================================-->
+
+    <root level="INFO">
+        <springProfile name="default, local, sandbox, test, prod, dev">
+            <appender-ref ref="CONSOLE"/>
+        </springProfile>
+    </root>
+
+</configuration>
