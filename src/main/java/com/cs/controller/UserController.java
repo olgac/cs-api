@@ -3,6 +3,8 @@ package com.cs.controller;
 import com.cs.model.request.LoginRequest;
 import com.cs.model.response.LoginResponse;
 import com.cs.service.UserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +20,13 @@ import javax.validation.Valid;
  */
 @RestController
 @RequestMapping("/user")
+@Api(description = "User operations")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
+    @ApiOperation("Login")
     @PostMapping("/login")
     public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest loginRequest) {
         return new ResponseEntity<LoginResponse>(userService.login(loginRequest), HttpStatus.OK);
