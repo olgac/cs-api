@@ -20,3 +20,9 @@ rest:
   client: /client
   merchant: /merchant
   transaction: /transaction
+
+endpoints:
+  health:
+    id: health
+    sensitive: false
+    enabled: true
