@@ -9,6 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.concurrent.Future;
+
 /**
  * Created by olgac on 31/05/2017.
  */
@@ -23,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private RestClient rest;
 
     @Override
-    public LoginResponse login(LoginRequest loginRequest) {
+    public Future<Optional<LoginResponse>> login(LoginRequest loginRequest) {
         return rest.post(loginPath, loginRequest, LoginResponse.class);
     }
 }

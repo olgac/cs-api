@@ -1,5 +1,7 @@
 package com.cs.controller;
 
+import com.cs.constants.Status;
+import com.cs.model.error.Error;
 import com.cs.model.request.ClientRequest;
 import com.cs.model.request.ListRequest;
 import com.cs.model.request.MerchantRequest;
@@ -25,12 +27,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import java.util.Optional;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Future;
 
 /**
  * Created by olgac on 31/05/2017.
  */
 @RestController
-@Api(description = "Transaction operations")
+@Api(description = "Transaction Operations")
 @RequestMapping("/transaction")
 public class TransactionController {
 
@@ -39,31 +44,51 @@ public class TransactionController {
 
     @ApiOperation("List")
     @PostMapping("/list")
-    public ResponseEntity<ListResponse> retrieveList(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody ListRequest listRequest, @RequestParam(value = "page", required = false) Integer page) {
-        return new ResponseEntity<ListResponse>(transactionService.retrieveList(token, listRequest, page), HttpStatus.OK);
+    public Callable<ResponseEntity<ListResponse>> retrieveList(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody ListRequest listRequest, @RequestParam(value = "page", required = false) Integer page) {
+        return () -> {
+            Future<Optional<ListResponse>> future = transactionService.retrieveList(token, listRequest, page);
+            Optional<ListResponse> optional = future.get();
+            return new ResponseEntity<>(optional.orElseThrow(() -> new Error(0, Status.ERROR, "List not retrieved!")), HttpStatus.OK);
+        };
     }
 
-    @ApiOperation("Report")
+    @ApiOperation("Report End-Point")
     @PostMapping("/report")
-    public ResponseEntity<ReportResponse> retrieveReport(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody ReportRequest reportRequest) {
-        return new ResponseEntity<ReportResponse>(transactionService.retrieveReport(token, reportRequest), HttpStatus.OK);
+    public Callable<ResponseEntity<ReportResponse>> retrieveReport(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody ReportRequest reportRequest) {
+        return () -> {
+            Future<Optional<ReportResponse>> future = transactionService.retrieveReport(token, reportRequest);
+            Optional<ReportResponse> optional = future.get();
+            return new ResponseEntity<>(optional.orElseThrow(() -> new Error(0, Status.ERROR, "Report not retrieved!")), HttpStatus.OK);
+        };
     }
 
-    @ApiOperation("Client")
+    @ApiOperation("Client End-Point")
     @PostMapping("/client")
-    public ResponseEntity<ClientResponse> retrieveClient(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody ClientRequest clientRequest) {
-        return new ResponseEntity<ClientResponse>(transactionService.retrieveClient(token, clientRequest), HttpStatus.OK);
+    public Callable<ResponseEntity<ClientResponse>> retrieveClient(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody ClientRequest clientRequest) {
+        return () -> {
+            Future<Optional<ClientResponse>> future = transactionService.retrieveClient(token, clientRequest);
+            Optional<ClientResponse> optional = future.get();
+            return new ResponseEntity<>(optional.orElseThrow(() -> new Error(0, Status.ERROR, "Client not retrieved!")), HttpStatus.OK);
+        };
     }
 
-    @ApiOperation("Merchant")
+    @ApiOperation("Merchant End-Point")
     @PostMapping("/merchant")
-    public ResponseEntity<MerchantResponse> retrieveMerchant(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody MerchantRequest merchantRequest) {
-        return new ResponseEntity<MerchantResponse>(transactionService.retrieveMerchant(token, merchantRequest), HttpStatus.OK);
+    public Callable<ResponseEntity<MerchantResponse>> retrieveMerchant(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody MerchantRequest merchantRequest) {
+        return () -> {
+            Future<Optional<MerchantResponse>> future = transactionService.retrieveMerchant(token, merchantRequest);
+            Optional<MerchantResponse> optional = future.get();
+            return new ResponseEntity<>(optional.orElseThrow(() -> new Error(0, Status.ERROR, "Merchant not retrieved!")), HttpStatus.OK);
+        };
     }
 
-    @ApiOperation("Transaction")
+    @ApiOperation("Transaction End-Point")
     @PostMapping
-    public ResponseEntity<TransactionResponse> retrieveTransaction(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody TransactionRequest transactionRequest) {
-        return new ResponseEntity<TransactionResponse>(transactionService.retrieveTransaction(token, transactionRequest), HttpStatus.OK);
+    public Callable<ResponseEntity<TransactionResponse>> retrieveTransaction(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody TransactionRequest transactionRequest) {
+        return () -> {
+            Future<Optional<TransactionResponse>> future = transactionService.retrieveTransaction(token, transactionRequest);
+            Optional<TransactionResponse> optional = future.get();
+            return new ResponseEntity<>(optional.orElseThrow(() -> new Error(0, Status.ERROR, "Merchant not retrieved!")), HttpStatus.OK);
+        };
     }
 }

@@ -17,6 +17,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+import java.util.concurrent.Future;
+
 /**
  * Created by olgac on 31/05/2017.
  */
@@ -43,28 +46,29 @@ public class TransactionServiceImpl implements TransactionService {
     private String transactionPath;
 
     @Override
-    public ListResponse retrieveList(String token, ListRequest listRequest, Integer page) {
+    public Future<Optional<ListResponse>> retrieveList(String token, ListRequest listRequest, Integer page) {
         String suffix = page != null && page > 1 ? "?page=".concat(page.toString()) : "";
+        //TODO listRequest.setPage(page);
         return rest.post(listPath.concat(suffix), token, listRequest, ListResponse.class);
     }
 
     @Override
-    public ReportResponse retrieveReport(String token, ReportRequest reportRequest) {
+    public Future<Optional<ReportResponse>> retrieveReport(String token, ReportRequest reportRequest) {
         return rest.post(reportPath, token, reportRequest, ReportResponse.class);
     }
 
     @Override
-    public ClientResponse retrieveClient(String token, ClientRequest clientRequest) {
+    public Future<Optional<ClientResponse>> retrieveClient(String token, ClientRequest clientRequest) {
         return rest.post(clientPath, token, clientRequest, ClientResponse.class);
     }
 
     @Override
-    public MerchantResponse retrieveMerchant(String token, MerchantRequest merchantRequest) {
+    public Future<Optional<MerchantResponse>> retrieveMerchant(String token, MerchantRequest merchantRequest) {
         return rest.post(merchantPath, token, merchantRequest, MerchantResponse.class);
     }
 
     @Override
-    public TransactionResponse retrieveTransaction(String token, TransactionRequest transactionRequest) {
+    public Future<Optional<TransactionResponse>> retrieveTransaction(String token, TransactionRequest transactionRequest) {
         return rest.post(transactionPath, token, transactionRequest, TransactionResponse.class);
     }
 }

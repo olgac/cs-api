@@ -11,19 +11,22 @@ import com.cs.model.response.MerchantResponse;
 import com.cs.model.response.ReportResponse;
 import com.cs.model.response.TransactionResponse;
 
+import java.util.Optional;
+import java.util.concurrent.Future;
+
 /**
  * Created by olgac on 31/05/2017.
  */
 public interface TransactionService {
 
-    ListResponse retrieveList(String token, ListRequest listRequest, Integer page);
+    Future<Optional<ListResponse>> retrieveList(String token, ListRequest listRequest, Integer page);
 
-    ReportResponse retrieveReport(String token, ReportRequest reportRequest);
+    Future<Optional<ReportResponse>> retrieveReport(String token, ReportRequest reportRequest);
 
-    ClientResponse retrieveClient(String token, ClientRequest clientRequest);
+    Future<Optional<ClientResponse>> retrieveClient(String token, ClientRequest clientRequest);
 
-    MerchantResponse retrieveMerchant(String token, MerchantRequest merchantRequest);
+    Future<Optional<MerchantResponse>> retrieveMerchant(String token, MerchantRequest merchantRequest);
 
-    TransactionResponse retrieveTransaction(String token, TransactionRequest transactionRequest);
+    Future<Optional<TransactionResponse>> retrieveTransaction(String token, TransactionRequest transactionRequest);
 
 }
