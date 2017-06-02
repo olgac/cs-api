@@ -50,7 +50,7 @@ public class TransactionServiceImpl implements TransactionService {
     @Async
     public Future<Optional<ListResponse>> retrieveList(String token, ListRequest listRequest, Integer page) {
         String suffix = page != null && page > 1 ? "?page=".concat(page.toString()) : "";
-        //TODO listRequest.setPage(page);
+        listRequest.setPage(page);
         return rest.post(listPath.concat(suffix), token, listRequest, ListResponse.class);
     }
 
