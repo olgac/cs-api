@@ -15,6 +15,7 @@ import com.cs.util.RestClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -46,6 +47,7 @@ public class TransactionServiceImpl implements TransactionService {
     private String transactionPath;
 
     @Override
+    @Async
     public Future<Optional<ListResponse>> retrieveList(String token, ListRequest listRequest, Integer page) {
         String suffix = page != null && page > 1 ? "?page=".concat(page.toString()) : "";
         //TODO listRequest.setPage(page);
@@ -53,21 +55,25 @@ public class TransactionServiceImpl implements TransactionService {
     }
 
     @Override
+    @Async
     public Future<Optional<ReportResponse>> retrieveReport(String token, ReportRequest reportRequest) {
         return rest.post(reportPath, token, reportRequest, ReportResponse.class);
     }
 
     @Override
+    @Async
     public Future<Optional<ClientResponse>> retrieveClient(String token, ClientRequest clientRequest) {
         return rest.post(clientPath, token, clientRequest, ClientResponse.class);
     }
 
     @Override
+    @Async
     public Future<Optional<MerchantResponse>> retrieveMerchant(String token, MerchantRequest merchantRequest) {
         return rest.post(merchantPath, token, merchantRequest, MerchantResponse.class);
     }
 
     @Override
+    @Async
     public Future<Optional<TransactionResponse>> retrieveTransaction(String token, TransactionRequest transactionRequest) {
         return rest.post(transactionPath, token, transactionRequest, TransactionResponse.class);
     }

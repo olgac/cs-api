@@ -88,7 +88,7 @@ public class TransactionController {
         return () -> {
             Future<Optional<TransactionResponse>> future = transactionService.retrieveTransaction(token, transactionRequest);
             Optional<TransactionResponse> optional = future.get();
-            return new ResponseEntity<>(optional.orElseThrow(() -> new Error(0, Status.ERROR, "Merchant not retrieved!")), HttpStatus.OK);
+            return new ResponseEntity<>(optional.orElseThrow(() -> new Error(0, Status.ERROR, "Transaction not retrieved!")), HttpStatus.OK);
         };
     }
 }

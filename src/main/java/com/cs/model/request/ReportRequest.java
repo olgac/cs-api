@@ -1,6 +1,9 @@
 package com.cs.model.request;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.cs.serializer.JsonDateDeserializer;
+import com.cs.serializer.JsonDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,10 +21,12 @@ import java.util.Date;
 @NoArgsConstructor
 public class ReportRequest {
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonDeserialize(using = JsonDateDeserializer.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date fromDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonDeserialize(using = JsonDateDeserializer.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date toDate;
 
     private Integer merchant;

@@ -1,9 +1,12 @@
 package com.cs.model.dto;
 
 import com.cs.constants.Status;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.cs.serializer.JsonDateTimeDeserializer;
+import com.cs.serializer.JsonDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -54,15 +57,18 @@ public class TransactionMerchantDto implements Serializable {
 
     private Integer parentId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = JsonDateTimeDeserializer.class)
+    @JsonSerialize(using = JsonDateTimeSerializer.class)
     @JsonProperty("created_at")
     private Date createdAt;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = JsonDateTimeDeserializer.class)
+    @JsonSerialize(using = JsonDateTimeSerializer.class)
     @JsonProperty("updated_at")
     private Date updatedAt;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = JsonDateTimeDeserializer.class)
+    @JsonSerialize(using = JsonDateTimeSerializer.class)
     @JsonProperty("deleted_at")
     private Date deletedAt;
 

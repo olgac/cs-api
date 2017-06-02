@@ -1,8 +1,11 @@
 package com.cs.model.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.cs.serializer.JsonDateTimeDeserializer;
+import com.cs.serializer.JsonDateTimeSerializer;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -56,7 +59,8 @@ public class MerchantDto implements Serializable {
 
     private String walletId;
 
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = JsonDateTimeDeserializer.class)
+    @JsonSerialize(using = JsonDateTimeSerializer.class)
     private Date createDate;
 
     private Boolean disable;

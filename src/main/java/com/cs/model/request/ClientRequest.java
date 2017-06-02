@@ -9,7 +9,6 @@ import org.hibernate.validator.constraints.NotBlank;
 /**
  * Created by olgac on 31/05/2017.
  */
-
 @Data
 @Builder
 @AllArgsConstructor

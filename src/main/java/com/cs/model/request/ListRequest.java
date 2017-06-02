@@ -4,7 +4,10 @@ import com.cs.constants.ErrorCode;
 import com.cs.constants.FilterField;
 import com.cs.constants.PaymentMethod;
 import com.cs.constants.Status;
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.cs.serializer.JsonDateDeserializer;
+import com.cs.serializer.JsonDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,10 +25,12 @@ import java.util.Date;
 @NoArgsConstructor
 public class ListRequest {
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonDeserialize(using = JsonDateDeserializer.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date fromDate;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonDeserialize(using = JsonDateDeserializer.class)
+    @JsonSerialize(using = JsonDateSerializer.class)
     private Date toDate;
 
     private Status status;
