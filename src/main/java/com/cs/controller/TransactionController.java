@@ -42,7 +42,7 @@ public class TransactionController {
     @Autowired
     private TransactionService transactionService;
 
-    @ApiOperation("List")
+    @ApiOperation("List End-Point")
     @PostMapping("/list")
     public Callable<ResponseEntity<ListResponse>> retrieveList(@RequestHeader(HttpHeaders.AUTHORIZATION) String token, @Valid @RequestBody ListRequest listRequest, @RequestParam(value = "page", required = false) Integer page) {
         return () -> {
