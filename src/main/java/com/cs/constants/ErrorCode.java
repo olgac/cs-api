@@ -17,6 +17,6 @@ public enum ErrorCode {
     CS07("3-D Secure Transport Error"),
     CS08("Transaction not permitted to cardholder");
 
-    private String value;
+    private String name;
 
 }
