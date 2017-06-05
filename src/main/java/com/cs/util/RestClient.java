@@ -36,6 +36,6 @@ public class RestClient {
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
         header.add(HttpHeaders.AUTHORIZATION, token);
-        return new HttpEntity<T>(request, header);
+        return new HttpEntity<>(request, header);
     }
 }
