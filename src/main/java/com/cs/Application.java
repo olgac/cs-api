@@ -5,6 +5,7 @@ import com.cs.util.RestClient;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.scheduling.annotation.AsyncConfigurerSupport;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -33,7 +34,9 @@ public class Application extends AsyncConfigurerSupport {
 
     @Bean
     public RestClient restClient() {
-        RestTemplate restTemplate =  new RestTemplate();
+        SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
+        requestFactory.setOutputStreaming(false);
+        RestTemplate restTemplate =  new RestTemplate(requestFactory);
         restTemplate.setErrorHandler(new ErrorHandler());
         return new RestClient(restTemplate);
     }
