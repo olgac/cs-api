@@ -96,7 +96,6 @@
                 <sonar.host.url>https://sonarcloud.io</sonar.host.url>
                 <sonar.login>7aed8c8c935ed7603350cfd7e26eeebbf4ec0f0a</sonar.login>
                 <sonar.language>java</sonar.language>
-                <sonar.branch>master</sonar.branch>
             </properties>
         </profile>
     </profiles>
