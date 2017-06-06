@@ -26,3 +26,7 @@ endpoints:
     id: health
     sensitive: false
     enabled: true
+
+rest:
+  readTimeout: 100000
+  connectTimeout: 100000
