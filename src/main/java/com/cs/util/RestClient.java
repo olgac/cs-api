@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.client.SimpleClientHttpRequestFactory;
 import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.web.client.RestTemplate;
 
@@ -29,6 +30,9 @@ public class RestClient {
     }
 
     public <T> Future<Optional<T>> post(String path, Object request, Class<T> responseType) {
+        SimpleClientHttpRequestFactory requestFactory = new SimpleClientHttpRequestFactory();
+        requestFactory.setOutputStreaming(false);
+        restTemplate.setRequestFactory(requestFactory);
         return new AsyncResult<>(Optional.ofNullable(restTemplate.postForObject(baseUrl.concat(path), request, responseType)));
     }
 
@@ -36,6 +40,7 @@ public class RestClient {
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
         header.add(HttpHeaders.AUTHORIZATION, token);
+        header.add(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
         return new HttpEntity<>(request, header);
     }
 }
