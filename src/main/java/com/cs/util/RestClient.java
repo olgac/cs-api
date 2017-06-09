@@ -40,7 +40,7 @@ public class RestClient {
         HttpHeaders header = new HttpHeaders();
         header.setContentType(MediaType.APPLICATION_JSON);
         header.add(HttpHeaders.AUTHORIZATION, token);
-        header.add(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE);
+        header.add(HttpHeaders.ACCEPT, MediaType.ALL_VALUE);
         return new HttpEntity<>(request, header);
     }
 }
