@@ -44,7 +44,7 @@ public class Application extends AsyncConfigurerSupport {
     }
 
     private ClientHttpRequestFactory getClientHttpRequestFactory() {
-        int timeout = 5000;
+        int timeout = 50000;
         RequestConfig config = RequestConfig.custom()
                 .setConnectTimeout(timeout)
                 .setConnectionRequestTimeout(timeout)
